@@ -7,12 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace _03DTP_Contacts_List
 {
     public partial class Form1 : Form   
     {
-
         public Form1()
         {
             InitializeComponent();
@@ -30,9 +30,21 @@ namespace _03DTP_Contacts_List
             txtPhone.Text = "";
         }
 
-        private void txtName_TextChanged(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
+            string filePath = @"H:/contacts-storage.txt";
+            List<string> lines = File.ReadAllLines(filePath).ToList();
 
+            foreach(string line in lines)
+            {
+                string[] sections = line.Split(',');
+                //make into method
+                ListViewItem lvi = new ListViewItem(sections[0]);
+                lvi.SubItems.Add(sections[1]);
+                lvi.SubItems.Add(sections[2]);
+                listView1.Items.Add(lvi);
+                //
+            }
         }
     }
 }
