@@ -32,19 +32,36 @@ namespace _03DTP_Contacts_List
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string filePath = @"H:/contacts-storage.txt";
+            string filePath = @"H:/contacts-storage-2.txt";
             List<string> lines = File.ReadAllLines(filePath).ToList();
 
-            foreach(string line in lines)
+            int i = 0;
+            ListViewItem lvi = new ListViewItem();
+            foreach (string line in lines)
             {
-                string[] sections = line.Split(',');
-                //make into method
-                ListViewItem lvi = new ListViewItem(sections[0]);
-                lvi.SubItems.Add(sections[1]);
-                lvi.SubItems.Add(sections[2]);
-                listView1.Items.Add(lvi);
-                //
+                switch (i)
+                {
+                    case 0:
+                        lvi.SubItems.Add(line);
+                        lvi.SubItems.RemoveAt(0);
+                        i++;
+                        break;
+                    case 1:
+                        lvi.SubItems.Add(line);
+                        i++;
+                        break;
+                    case 2:
+                        lvi.SubItems.Add(line);
+                        listView1.Items.Add(lvi);
+                        lvi.SubItems.Clear();
+                        i = 0;
+                        break;
+                }
+
+                    
             }
+
         }
+
     }
 }
