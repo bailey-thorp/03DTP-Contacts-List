@@ -13,9 +13,6 @@ namespace _03DTP_Contacts_List
 {
     public partial class Form1 : Form   
     {
-        //make it read from file on loading
-        //make a method for reading file --> listviewbox
-        //use StreamWriter?
         string filePath = @"H:/contacts-storage.txt";
         public Form1()
         {
@@ -37,7 +34,7 @@ namespace _03DTP_Contacts_List
             lvi.SubItems.Add(txtPhone.Text);
             listView1.Items.Add(lvi);
 
-            File.WriteAllText(filePath, $"{txtName.Text},{txtAge.Text},{txtPhone.Text}");
+            File.AppendAllText(filePath, $"\n{txtName.Text},{txtAge.Text},{txtPhone.Text}");
 
             ClearTextBoxes();
             
@@ -45,11 +42,17 @@ namespace _03DTP_Contacts_List
 
         private void button1_Click(object sender, EventArgs e)
         {
+            File.WriteAllText(filePath, string.Empty);
+            listView1.Items.Clear();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
             listView1.Items.Clear();
 
             List<string> lines = File.ReadAllLines(filePath).ToList();
 
-            foreach(string line in lines)
+            foreach (string line in lines)
             {
                 string[] sections = line.Split(',');
                 //make into method?
