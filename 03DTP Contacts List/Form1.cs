@@ -12,13 +12,18 @@ using System.IO;
 namespace _03DTP_Contacts_List
 {
     public partial class Form1 : Form   
-    {
+    {   
+        public static string editName = string.Empty;
+        public static string editAge = string.Empty;
+        public static string editPhone = string.Empty;
         string filePath = @"H:/contacts-storage.txt";
         public Form1()
         {
             InitializeComponent();
         }
-
+        //
+        //Methods
+        //
         public void ClearTextBoxes()
         {
             txtName.Text = "";
@@ -26,6 +31,30 @@ namespace _03DTP_Contacts_List
             txtPhone.Text = "";
         }
 
+        public void LoadContacts()
+        {
+            listView1.Items.Clear();
+
+            List<string> lines = File.ReadAllLines(filePath).ToList();
+
+            foreach (string line in lines)
+            {
+                string[] sections = line.Split(',');
+
+                ListViewItem lvi = new ListViewItem(sections[0]);
+                
+                lvi.SubItems.Add(sections[1]);
+                lvi.SubItems.Add(sections[2]);
+                listView1.Items.Add(lvi);
+            }
+        }
+        //
+        //Events
+        //
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            LoadContacts();
+        }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -36,32 +65,19 @@ namespace _03DTP_Contacts_List
 
             File.AppendAllText(filePath, $"\n{txtName.Text},{txtAge.Text},{txtPhone.Text}");
 
-            ClearTextBoxes();
+            LoadContacts();
             
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnEdit_Click(object sender, EventArgs e)
         {
-            File.WriteAllText(filePath, string.Empty);
-            listView1.Items.Clear();
-        }
+            //MessageBox.Show($"{listView1.FocusedItem.SubItems[0].Text} {listView1.FocusedItem.SubItems[1].Text} {listView1.FocusedItem.SubItems[2].Text}");
+            editName = listView1.FocusedItem.SubItems[0].Text;
+            editAge = listView1.FocusedItem.SubItems[1].Text;
+            editPhone = listView1.FocusedItem.SubItems[2].Text;
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            listView1.Items.Clear();
-
-            List<string> lines = File.ReadAllLines(filePath).ToList();
-
-            foreach (string line in lines)
-            {
-                string[] sections = line.Split(',');
-                //make into method?
-                ListViewItem lvi = new ListViewItem(sections[0]);
-                lvi.SubItems.Add(sections[1]);
-                lvi.SubItems.Add(sections[2]);
-                listView1.Items.Add(lvi);
-                //
-            }
+            Form2 editingForm = new Form2();
+            editingForm.Show();
         }
     }
 }
