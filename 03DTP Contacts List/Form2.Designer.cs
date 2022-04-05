@@ -1,7 +1,7 @@
 ﻿
 namespace _03DTP_Contacts_List
 {
-    partial class Form2
+    partial class frm2
     {
         /// <summary>
         /// Required designer variable.
@@ -117,7 +117,7 @@ namespace _03DTP_Contacts_List
             this.lblEditTitle.TabIndex = 8;
             this.lblEditTitle.Text = "Edit This Contact";
             // 
-            // Form2
+            // frm2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -131,8 +131,9 @@ namespace _03DTP_Contacts_List
             this.Controls.Add(this.txtAge);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.txtPhone);
-            this.Name = "Form2";
+            this.Name = "frm2";
             this.Text = "Form2";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
             this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

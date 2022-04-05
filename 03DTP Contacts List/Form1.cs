@@ -11,13 +11,14 @@ using System.IO;
 
 namespace _03DTP_Contacts_List
 {
-    public partial class Form1 : Form   
+    public partial class frm1 : Form   
     {   
         public static string editName = string.Empty;
         public static string editAge = string.Empty;
         public static string editPhone = string.Empty;
+        
         string filePath = @"H:/contacts-storage.txt";
-        public Form1()
+        public frm1()
         {
             InitializeComponent();
         }
@@ -71,13 +72,21 @@ namespace _03DTP_Contacts_List
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show($"{listView1.FocusedItem.SubItems[0].Text} {listView1.FocusedItem.SubItems[1].Text} {listView1.FocusedItem.SubItems[2].Text}");
             editName = listView1.FocusedItem.SubItems[0].Text;
             editAge = listView1.FocusedItem.SubItems[1].Text;
             editPhone = listView1.FocusedItem.SubItems[2].Text;
 
-            Form2 editingForm = new Form2();
+            frm2 editingForm = new frm2();
+
             editingForm.Show();
+
+
+
+        }
+
+        private void Form1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

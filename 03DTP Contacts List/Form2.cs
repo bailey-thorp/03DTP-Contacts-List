@@ -11,20 +11,21 @@ using System.IO;
 
 namespace _03DTP_Contacts_List
 {
-    public partial class Form2 : Form
+    public partial class frm2 : Form
     {
         //make it so Form1 cannot be used while Form2 is open
         //how to do something (write to file) in Form1 when Confirm is pressed?
-        public Form2()
+        //how to change properties of form1?
+        public frm2()
         {
             InitializeComponent();
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            txtName.Text = Form1.editName;
-            txtAge.Text = Form1.editAge;
-            txtPhone.Text = Form1.editPhone;
+            txtName.Text = frm1.editName;
+            txtAge.Text = frm1.editAge;
+            txtPhone.Text = frm1.editPhone;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -34,9 +35,20 @@ namespace _03DTP_Contacts_List
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            Form1.editName = txtName.Text;
-            Form1.editAge = txtAge.Text;
-            Form1.editPhone = txtPhone.Text;
+            frm1.editName = txtName.Text;
+            frm1.editAge = txtAge.Text;
+            frm1.editPhone = txtPhone.Text;
+
+            //edit text file
+
+
+
+            this.Close();
+        }
+
+        private void Form2_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
         }
     }
 }
