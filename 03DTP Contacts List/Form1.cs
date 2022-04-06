@@ -16,15 +16,19 @@ namespace _03DTP_Contacts_List
         public static string editName = string.Empty;
         public static string editAge = string.Empty;
         public static string editPhone = string.Empty;
-        
+        public static bool editConfirm = false;
+
         string filePath = @"H:/contacts-storage.txt";
+
         public frm1()
         {
             InitializeComponent();
         }
+
         //
         //Methods
         //
+
         public void ClearTextBoxes()
         {
             txtName.Text = "";
@@ -35,23 +39,29 @@ namespace _03DTP_Contacts_List
         public void LoadContacts()
         {
             listView1.Items.Clear();
-
             List<string> lines = File.ReadAllLines(filePath).ToList();
-
             foreach (string line in lines)
             {
                 string[] sections = line.Split(',');
 
                 ListViewItem lvi = new ListViewItem(sections[0]);
-                
                 lvi.SubItems.Add(sections[1]);
                 lvi.SubItems.Add(sections[2]);
                 listView1.Items.Add(lvi);
             }
         }
+
+        public void EditContact()
+        {
+            string[] allLines = File.ReadAllLines(filePath);
+            allLines[listView1.FocusedItem.Index] = $"{editName},{editAge},{editPhone}";
+            File.WriteAllLines(filePath, allLines);
+        }
+
         //
         //Events
         //
+
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadContacts();
@@ -78,15 +88,27 @@ namespace _03DTP_Contacts_List
 
             frm2 editingForm = new frm2();
 
-            editingForm.Show();
+            editingForm.ShowDialog();
 
+            if (editConfirm)
+            {
+                EditContact();
 
-
+                LoadContacts();
+                editConfirm = false;
+            }
         }
 
-        private void Form1_Enter(object sender, EventArgs e)
+        private void btnUp_Click(object sender, EventArgs e)
         {
+            //string tempContact = listView1.Items.
+            //MessageBox.Show(tempContact);
 
+            //save the above contact
+            //replace above contact with selected contact
+            //replace selected contact with temp contact
+
+            //ensure doesnt break when top is selected
         }
     }
 }

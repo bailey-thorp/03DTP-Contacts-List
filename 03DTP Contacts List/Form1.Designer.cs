@@ -41,7 +41,8 @@ namespace _03DTP_Contacts_List
             this.lblAge = new System.Windows.Forms.Label();
             this.lblPhone = new System.Windows.Forms.Label();
             this.btnEdit = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnUp = new System.Windows.Forms.Button();
+            this.btnDown = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listView1
@@ -142,21 +143,32 @@ namespace _03DTP_Contacts_List
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // label1
+            // btnUp
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(664, 148);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "label1";
+            this.btnUp.Location = new System.Drawing.Point(592, 81);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(75, 23);
+            this.btnUp.TabIndex = 10;
+            this.btnUp.Text = "Move Up";
+            this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
+            // 
+            // btnDown
+            // 
+            this.btnDown.Location = new System.Drawing.Point(592, 130);
+            this.btnDown.Name = "btnDown";
+            this.btnDown.Size = new System.Drawing.Size(75, 23);
+            this.btnDown.TabIndex = 11;
+            this.btnDown.Text = "Move Down";
+            this.btnDown.UseVisualStyleBackColor = true;
             // 
             // frm1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnDown);
+            this.Controls.Add(this.btnUp);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.lblPhone);
             this.Controls.Add(this.lblAge);
@@ -169,7 +181,6 @@ namespace _03DTP_Contacts_List
             this.Name = "frm1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Enter += new System.EventHandler(this.Form1_Enter);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -189,7 +200,8 @@ namespace _03DTP_Contacts_List
         private System.Windows.Forms.Label lblAge;
         private System.Windows.Forms.Label lblPhone;
         private System.Windows.Forms.Button btnEdit;
-        public System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnUp;
+        private System.Windows.Forms.Button btnDown;
     }
 }
 

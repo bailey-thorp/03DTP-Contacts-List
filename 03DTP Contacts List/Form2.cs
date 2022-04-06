@@ -13,9 +13,6 @@ namespace _03DTP_Contacts_List
 {
     public partial class frm2 : Form
     {
-        //make it so Form1 cannot be used while Form2 is open
-        //how to do something (write to file) in Form1 when Confirm is pressed?
-        //how to change properties of form1?
         public frm2()
         {
             InitializeComponent();
@@ -38,17 +35,9 @@ namespace _03DTP_Contacts_List
             frm1.editName = txtName.Text;
             frm1.editAge = txtAge.Text;
             frm1.editPhone = txtPhone.Text;
-
-            //edit text file
-
-
+            frm1.editConfirm = true;
 
             this.Close();
-        }
-
-        private void Form2_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            
         }
     }
 }
