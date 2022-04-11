@@ -54,7 +54,7 @@ namespace _03DTP_Contacts_List
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(281, 38);
+            this.listView1.Location = new System.Drawing.Point(281, 43);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(248, 161);
             this.listView1.TabIndex = 1;
@@ -161,6 +161,7 @@ namespace _03DTP_Contacts_List
             this.btnDown.TabIndex = 11;
             this.btnDown.Text = "Move Down";
             this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
             // 
             // frm1
             // 

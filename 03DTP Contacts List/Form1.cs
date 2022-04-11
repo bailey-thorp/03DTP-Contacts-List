@@ -58,6 +58,22 @@ namespace _03DTP_Contacts_List
             File.WriteAllLines(filePath, allLines);
         }
 
+        public void Swap(int a)
+        {
+            //find out why this adds an empty line to the file
+            //
+            //
+            //
+            int selectedIndex = listView1.FocusedItem.Index;
+            string[] allLines = File.ReadAllLines(filePath);
+            (allLines[selectedIndex], allLines[selectedIndex + a]) = (allLines[selectedIndex + a], allLines[selectedIndex]);
+
+            File.WriteAllLines(filePath, allLines);
+            LoadContacts();
+            listView1.Items[selectedIndex + a].Focused = true;
+            listView1.Items[selectedIndex + a].Selected = true;
+        }
+
         //
         //Events
         //
@@ -93,7 +109,6 @@ namespace _03DTP_Contacts_List
             if (editConfirm)
             {
                 EditContact();
-
                 LoadContacts();
                 editConfirm = false;
             }
@@ -101,14 +116,20 @@ namespace _03DTP_Contacts_List
 
         private void btnUp_Click(object sender, EventArgs e)
         {
-            //string tempContact = listView1.Items.
-            //MessageBox.Show(tempContact);
-
-            //save the above contact
-            //replace above contact with selected contact
-            //replace selected contact with temp contact
-
-            //ensure doesnt break when top is selected
+            if (listView1.FocusedItem.Index > 0)
+            {
+                Swap(-1);
+            }
         }
+
+        private void btnDown_Click(object sender, EventArgs e)
+        {
+            if (listView1.FocusedItem.Index < listView1.Items.Count - 1)
+            {
+                Swap(1);
+            }
+        }
+
+
     }
 }
