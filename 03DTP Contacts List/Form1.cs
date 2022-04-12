@@ -28,6 +28,13 @@ namespace _03DTP_Contacts_List
         //
         //Methods
         //
+        public void temp()
+        {
+            File.AppendAllText(filePath, "test");
+            MessageBox.Show(File.ReadLines(filePath).Count().ToString());
+
+
+        }
 
         public void ClearTextBoxes()
         {
@@ -60,15 +67,14 @@ namespace _03DTP_Contacts_List
 
         public void Swap(int a)
         {
-            //find out why this adds an empty line to the file
-            //
-            //
-            //
+            //make a method that takes the array and see if it has added the empty line (not the file)
             int selectedIndex = listView1.FocusedItem.Index;
             string[] allLines = File.ReadAllLines(filePath);
+            
             (allLines[selectedIndex], allLines[selectedIndex + a]) = (allLines[selectedIndex + a], allLines[selectedIndex]);
-
             File.WriteAllLines(filePath, allLines);
+            temp();
+
             LoadContacts();
             listView1.Items[selectedIndex + a].Focused = true;
             listView1.Items[selectedIndex + a].Selected = true;
@@ -85,15 +91,10 @@ namespace _03DTP_Contacts_List
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            ListViewItem lvi = new ListViewItem(txtName.Text);
-            lvi.SubItems.Add(txtAge.Text);
-            lvi.SubItems.Add(txtPhone.Text);
-            listView1.Items.Add(lvi);
-
             File.AppendAllText(filePath, $"\n{txtName.Text},{txtAge.Text},{txtPhone.Text}");
 
             LoadContacts();
-            
+            ClearTextBoxes();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
