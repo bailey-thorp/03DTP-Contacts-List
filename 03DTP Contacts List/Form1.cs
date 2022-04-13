@@ -79,11 +79,11 @@ namespace _03DTP_Contacts_List
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadContacts();
-        }
+        }   
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            File.AppendAllText(filePath, $"\n{txtName.Text},{txtAge.Text},{txtPhone.Text}");
+            File.AppendAllText(filePath, $"{txtName.Text},{txtAge.Text},{txtPhone.Text}\n");
 
             LoadContacts();
             ClearTextBoxes();
