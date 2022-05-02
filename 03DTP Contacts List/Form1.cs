@@ -18,7 +18,7 @@ namespace _03DTP_Contacts_List
         public static string editPhone = string.Empty;
         public static bool editConfirm = false;
 
-        string filePath = @"H:/contacts-storage.txt";
+        string filePath = @"contacts-storage.txt";
 
         public frm1()
         {
@@ -37,10 +37,10 @@ namespace _03DTP_Contacts_List
         }
 
         public void LoadContacts()
-        {
+        {   
             listView1.Items.Clear();
-            List<string> lines = File.ReadAllLines(filePath).ToList();
-            foreach (string line in lines)
+            string[] allLines = File.ReadAllLines(filePath);
+            foreach (string line in allLines)
             {
                 string[] sections = line.Split(',');
 
@@ -123,6 +123,15 @@ namespace _03DTP_Contacts_List
             }
         }
 
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = listView1.FocusedItem.Index;
+            List<string> allLines = File.ReadAllLines(filePath).ToList();
 
+            allLines.RemoveAt(selectedIndex);
+
+            File.WriteAllLines(filePath, allLines);
+            LoadContacts();
+        }
     }
 }

@@ -43,6 +43,7 @@ namespace _03DTP_Contacts_List
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listView1
@@ -94,7 +95,7 @@ namespace _03DTP_Contacts_List
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(491, 323);
+            this.txtPhone.Location = new System.Drawing.Point(496, 323);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(100, 20);
             this.txtPhone.TabIndex = 4;
@@ -135,9 +136,9 @@ namespace _03DTP_Contacts_List
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(95, 102);
+            this.btnEdit.Location = new System.Drawing.Point(83, 68);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(96, 51);
+            this.btnEdit.Size = new System.Drawing.Size(115, 66);
             this.btnEdit.TabIndex = 9;
             this.btnEdit.Text = "Edit Selected Contact";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -163,11 +164,22 @@ namespace _03DTP_Contacts_List
             this.btnDown.UseVisualStyleBackColor = true;
             this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(83, 168);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(115, 36);
+            this.btnDelete.TabIndex = 12;
+            this.btnDelete.Text = "Delete Selected Contact";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // frm1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnUp);
             this.Controls.Add(this.btnEdit);
@@ -203,6 +215,7 @@ namespace _03DTP_Contacts_List
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnUp;
         private System.Windows.Forms.Button btnDown;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
 
