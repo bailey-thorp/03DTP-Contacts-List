@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace _03DTP_Contacts_List
 {
@@ -83,10 +84,17 @@ namespace _03DTP_Contacts_List
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            File.AppendAllText(filePath, $"{txtName.Text},{txtAge.Text},{txtPhone.Text}\n");
+            bool validName = Regex.IsMatch(txtName.Text, @"^[a-zA-Z]+$");
+            bool validAge = Regex.IsMatch(txtAge.Text, @"^\d+$");
+            bool validPhone = Regex.IsMatch(txtAge.Text, @"^\d+$");
 
-            LoadContacts();
-            ClearTextBoxes();
+            if (validName && validAge && validPhone)
+            {
+                File.AppendAllText(filePath, $"{txtName.Text},{txtAge.Text},{txtPhone.Text}\n");
+                LoadContacts();
+                ClearTextBoxes();
+            }
+            //only 3 if statements to show which textboxes are invalid
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
