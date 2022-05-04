@@ -45,6 +45,7 @@ namespace _03DTP_Contacts_List
             {
                 string[] sections = line.Split(',');
 
+                //put another foreach loop here
                 ListViewItem lvi = new ListViewItem(sections[0]);
                 lvi.SubItems.Add(sections[1]);
                 lvi.SubItems.Add(sections[2]);
@@ -86,7 +87,8 @@ namespace _03DTP_Contacts_List
         {
             bool validName = Regex.IsMatch(txtName.Text, @"^[a-zA-Z]+$");
             bool validAge = Regex.IsMatch(txtAge.Text, @"^\d+$");
-            bool validPhone = Regex.IsMatch(txtAge.Text, @"^\d+$");
+            bool validPhone = Regex.IsMatch(txtPhone.Text, @"^\d+$");
+            string error = "";
 
             if (validName && validAge && validPhone)
             {
@@ -94,7 +96,13 @@ namespace _03DTP_Contacts_List
                 LoadContacts();
                 ClearTextBoxes();
             }
-            //only 3 if statements to show which textboxes are invalid
+            else
+            {
+                if (!validName) { error = error +"The name must only contain letters\n"; }
+                if (!validAge) { error = error + "The age must only contain numbers\n"; }
+                if (!validPhone) { error = error + "The Phone Number must only contain numbers\n"; }
+            }
+            lblError.Text = error;
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -104,7 +112,6 @@ namespace _03DTP_Contacts_List
             editPhone = listView1.FocusedItem.SubItems[2].Text;
 
             frm2 editingForm = new frm2();
-
             editingForm.ShowDialog();
 
             if (editConfirm)
