@@ -74,6 +74,11 @@ namespace _03DTP_Contacts_List
             listView1.Items[selectedIndex + a].Selected = true;
         }
 
+        public void CheckValidity()
+        {
+
+        }
+
         //
         //Events
         //
@@ -90,6 +95,10 @@ namespace _03DTP_Contacts_List
             bool validPhone = Regex.IsMatch(txtPhone.Text, @"^\d+$");
             string error = "";
 
+            txtName.BackColor = SystemColors.Window;
+            txtAge.BackColor = SystemColors.Window;
+            txtPhone.BackColor = SystemColors.Window;
+
             if (validName && validAge && validPhone)
             {
                 File.AppendAllText(filePath, $"{txtName.Text},{txtAge.Text},{txtPhone.Text}\n");
@@ -98,9 +107,9 @@ namespace _03DTP_Contacts_List
             }
             else
             {
-                if (!validName) { error = error +"The name must only contain letters\n"; }
-                if (!validAge) { error = error + "The age must only contain numbers\n"; }
-                if (!validPhone) { error = error + "The Phone Number must only contain numbers\n"; }
+                if (!validName) { error = error +"The name must only contain letters\n"; txtName.BackColor = Color.Pink; }
+                if (!validAge) { error = error + "The age must only contain numbers\n"; txtAge.BackColor = Color.Pink; }
+                if (!validPhone) { error = error + "The Phone Number must only contain numbers\n"; txtPhone.BackColor = Color.Pink; }
             }
             lblError.Text = error;
         }

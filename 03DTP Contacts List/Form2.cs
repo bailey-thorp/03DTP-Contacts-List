@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace _03DTP_Contacts_List
 {
@@ -32,12 +33,32 @@ namespace _03DTP_Contacts_List
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            frm1.editName = txtName.Text;
-            frm1.editAge = txtAge.Text;
-            frm1.editPhone = txtPhone.Text;
-            frm1.editConfirm = true;
+            bool validName = Regex.IsMatch(txtName.Text, @"^[a-zA-Z]+$");
+            bool validAge = Regex.IsMatch(txtAge.Text, @"^\d+$");
+            bool validPhone = Regex.IsMatch(txtPhone.Text, @"^\d+$");
+            string error = "";
 
-            this.Close();
+            txtName.BackColor = SystemColors.Window;
+            txtAge.BackColor = SystemColors.Window;
+            txtPhone.BackColor = SystemColors.Window;
+
+            if (validName && validAge && validPhone)
+            {
+                lblError.Text = error;
+                frm1.editName = txtName.Text;
+                frm1.editAge = txtAge.Text;
+                frm1.editPhone = txtPhone.Text;
+                frm1.editConfirm = true;
+
+                this.Close();
+            }
+            else
+            {
+                if (!validName) { error = error + "The name must only contain letters\n"; txtName.BackColor = Color.Pink; }
+                if (!validAge) { error = error + "The age must only contain numbers\n"; txtAge.BackColor = Color.Pink; }
+                if (!validPhone) { error = error + "The Phone Number must only contain numbers\n"; txtPhone.BackColor = Color.Pink; }
+            }
+            lblError.Text = error;
         }
     }
 }

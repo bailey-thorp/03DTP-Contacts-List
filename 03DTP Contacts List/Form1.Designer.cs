@@ -96,6 +96,7 @@ namespace _03DTP_Contacts_List
             // 
             // txtPhone
             // 
+            this.txtPhone.BackColor = System.Drawing.SystemColors.Window;
             this.txtPhone.Location = new System.Drawing.Point(496, 323);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(100, 20);
@@ -188,6 +189,7 @@ namespace _03DTP_Contacts_List
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.btnDelete);
@@ -217,9 +219,7 @@ namespace _03DTP_Contacts_List
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtPhone;
-        private System.Windows.Forms.TextBox txtAge;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblAge;
         private System.Windows.Forms.Label lblPhone;
@@ -228,6 +228,8 @@ namespace _03DTP_Contacts_List
         private System.Windows.Forms.Button btnDown;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.TextBox txtAge;
     }
 }
 

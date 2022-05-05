@@ -38,6 +38,7 @@ namespace _03DTP_Contacts_List
             this.lblAge = new System.Windows.Forms.Label();
             this.lblPhone = new System.Windows.Forms.Label();
             this.lblEditTitle = new System.Windows.Forms.Label();
+            this.lblError = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtPhone
@@ -63,7 +64,7 @@ namespace _03DTP_Contacts_List
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(100, 232);
+            this.btnCancel.Location = new System.Drawing.Point(90, 213);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 3;
@@ -73,7 +74,7 @@ namespace _03DTP_Contacts_List
             // 
             // btnConfirm
             // 
-            this.btnConfirm.Location = new System.Drawing.Point(294, 232);
+            this.btnConfirm.Location = new System.Drawing.Point(293, 213);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(75, 23);
             this.btnConfirm.TabIndex = 4;
@@ -117,11 +118,21 @@ namespace _03DTP_Contacts_List
             this.lblEditTitle.TabIndex = 8;
             this.lblEditTitle.Text = "Edit This Contact";
             // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Location = new System.Drawing.Point(245, 248);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(39, 13);
+            this.lblError.TabIndex = 14;
+            this.lblError.Text = "lblError";
+            // 
             // frm2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(470, 312);
+            this.Controls.Add(this.lblError);
             this.Controls.Add(this.lblEditTitle);
             this.Controls.Add(this.lblPhone);
             this.Controls.Add(this.lblAge);
@@ -150,5 +161,6 @@ namespace _03DTP_Contacts_List
         private System.Windows.Forms.Label lblAge;
         private System.Windows.Forms.Label lblPhone;
         private System.Windows.Forms.Label lblEditTitle;
+        private System.Windows.Forms.Label lblError;
     }
 }
