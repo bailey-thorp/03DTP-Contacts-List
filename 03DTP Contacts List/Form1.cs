@@ -74,11 +74,6 @@ namespace _03DTP_Contacts_List
             listView1.Items[selectedIndex + a].Selected = true;
         }
 
-        public void CheckValidity()
-        {
-
-        }
-
         //
         //Events
         //
@@ -90,7 +85,7 @@ namespace _03DTP_Contacts_List
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            bool validName = Regex.IsMatch(txtName.Text, @"^[a-zA-Z]+$");
+            bool validName = Regex.IsMatch(txtName.Text, @"^[a-zA-Z\s]+$");
             bool validAge = Regex.IsMatch(txtAge.Text, @"^\d+$");
             bool validPhone = Regex.IsMatch(txtPhone.Text, @"^\d+$");
             string error = "";
@@ -109,7 +104,7 @@ namespace _03DTP_Contacts_List
             {
                 if (!validName) { error = error +"The name must only contain letters\n"; txtName.BackColor = Color.Pink; }
                 if (!validAge) { error = error + "The age must only contain numbers\n"; txtAge.BackColor = Color.Pink; }
-                if (!validPhone) { error = error + "The Phone Number must only contain numbers\n"; txtPhone.BackColor = Color.Pink; }
+                if (!validPhone) { error = error + "The Phone No. must only contain numbers\n"; txtPhone.BackColor = Color.Pink; }
             }
             lblError.Text = error;
         }
@@ -141,7 +136,7 @@ namespace _03DTP_Contacts_List
 
         private void btnDown_Click(object sender, EventArgs e)
         {
-            if (listView1.FocusedItem.Index < listView1.Items.Count - 1)
+            if (listView1.FocusedItem.Index < listView1.Items.Count -1)
             {
                 Swap(1);
             }
@@ -157,5 +152,6 @@ namespace _03DTP_Contacts_List
             File.WriteAllLines(filePath, allLines);
             LoadContacts();
         }
+
     }
 }

@@ -33,7 +33,7 @@ namespace _03DTP_Contacts_List
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            bool validName = Regex.IsMatch(txtName.Text, @"^[a-zA-Z]+$");
+            bool validName = Regex.IsMatch(txtName.Text, @"^[a-zA-Z\s]+$");
             bool validAge = Regex.IsMatch(txtAge.Text, @"^\d+$");
             bool validPhone = Regex.IsMatch(txtPhone.Text, @"^\d+$");
             string error = "";
