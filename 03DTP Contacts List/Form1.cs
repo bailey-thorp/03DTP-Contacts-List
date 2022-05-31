@@ -12,8 +12,8 @@ using System.Text.RegularExpressions;
 
 namespace _03DTP_Contacts_List
 {
-    public partial class frm1 : Form   
-    {   
+    public partial class frm1 : Form
+    {
         public static string editName = string.Empty;
         public static string editAge = string.Empty;
         public static string editPhone = string.Empty;
@@ -24,6 +24,7 @@ namespace _03DTP_Contacts_List
         public frm1()
         {
             InitializeComponent();
+            if (!File.Exists(filePath)) { using (File.Create("Contacts-storage.txt")) {} }
         }
 
         //
