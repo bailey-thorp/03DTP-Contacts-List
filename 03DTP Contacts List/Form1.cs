@@ -152,6 +152,12 @@ namespace _03DTP_Contacts_List
 
             File.WriteAllLines(filePath, allLines);
             LoadContacts();
+
+            if (selectedIndex < listView1.Items.Count)
+            {
+                listView1.Items[selectedIndex].Focused = true;
+                listView1.Items[selectedIndex].Selected = true;
+            }
         }
 
     }

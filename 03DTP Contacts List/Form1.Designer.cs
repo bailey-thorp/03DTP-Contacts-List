@@ -187,9 +187,8 @@ namespace _03DTP_Contacts_List
             this.lblError.AutoSize = true;
             this.lblError.Location = new System.Drawing.Point(374, 382);
             this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(39, 13);
+            this.lblError.Size = new System.Drawing.Size(0, 13);
             this.lblError.TabIndex = 13;
-            this.lblError.Text = "lblError";
             this.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frm1
