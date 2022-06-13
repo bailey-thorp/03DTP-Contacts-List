@@ -66,7 +66,10 @@ namespace _03DTP_Contacts_List
                 listView1.Items.Add(lvi);
             }
         }
-
+        public void FindSelectedIndex()
+        {
+            selectedIndex = listView1.FocusedItem.Index;
+        }
         public void SwapLines(int a)
         {
             (allLines[selectedIndex], allLines[selectedIndex + a]) = (allLines[selectedIndex + a], allLines[selectedIndex]);
@@ -99,6 +102,45 @@ namespace _03DTP_Contacts_List
             bool a = (validName && validAge && validPhone);
             return a;
         }
+        public void ShowErrorThenClearVariable()
+        {
+            lblError.Text = error;
+            error = "";
+        }
+        public void SetEditVariables()
+        {
+            editName = listView1.FocusedItem.SubItems[0].Text;
+            editAge = listView1.FocusedItem.SubItems[1].Text;
+            editPhone = listView1.FocusedItem.SubItems[2].Text;
+        }
+        public void ShowEditingForm()
+        {
+            frm2 editingForm = new frm2();
+            editingForm.ShowDialog();
+        }
+        public void EditSelectedLine()
+        {
+            allLines[listView1.FocusedItem.Index] = $"{editName},{editAge},{editPhone}";
+        }
+        public bool SelectedContactIsNotAtTop()
+        {
+            bool a = (selectedIndex > 0);
+            return a;
+        }
+        public bool SelectedContactIsNotAtBottom()
+        {
+            bool a = (selectedIndex < listView1.Items.Count - 1);
+            return a;
+        }
+        public void ReselectContact()
+        {
+            listView1.Items[selectedIndex].Focused = true;
+            listView1.Items[selectedIndex].Selected = true;
+        }
+        public void RemoveSelectedContact()
+        {
+            allLines.RemoveAt(selectedIndex);
+        }
 
 
         //
@@ -123,7 +165,6 @@ namespace _03DTP_Contacts_List
         public void Swap(int a)
         {
 
-            selectedIndex = listView1.FocusedItem.Index;
             ReadFile();
             SwapLines(a);
             WriteFile();
@@ -132,7 +173,6 @@ namespace _03DTP_Contacts_List
             SelectNewlySwappedLine(a);
         }
         
-
 
         //
         //Events
@@ -162,24 +202,20 @@ namespace _03DTP_Contacts_List
                 if (!validAge) { error = error + "The age must only contain numbers\n"; txtAge.BackColor = Color.Pink; }
                 if (!validPhone) { error = error + "The Phone No. must only contain numbers\n"; txtPhone.BackColor = Color.Pink; }
             }
-            lblError.Text = error;
-            error = "";
+            ShowErrorThenClearVariable();
 
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            editName = listView1.FocusedItem.SubItems[0].Text;
-            editAge = listView1.FocusedItem.SubItems[1].Text;
-            editPhone = listView1.FocusedItem.SubItems[2].Text;
+            SetEditVariables();
 
-            frm2 editingForm = new frm2();
-            editingForm.ShowDialog();
+            ShowEditingForm();
 
             if (editConfirm)
             {
                 ReadFile();
-                allLines[listView1.FocusedItem.Index] = $"{editName},{editAge},{editPhone}";
+                EditSelectedLine();
                 WriteFile();
                 LoadContacts();
                 editConfirm = false;
@@ -188,8 +224,7 @@ namespace _03DTP_Contacts_List
 
         private void btnUp_Click(object sender, EventArgs e)
         {
-            //swap selected contact with the one above it if it is not at the top
-            if (listView1.FocusedItem.Index > 0)
+            if (SelectedContactIsNotAtTop())
             {
                 Swap(-1);
             }
@@ -197,8 +232,7 @@ namespace _03DTP_Contacts_List
 
         private void btnDown_Click(object sender, EventArgs e)
         {
-            //swap selected contact with the one below if it it is not at the bottom
-            if (listView1.FocusedItem.Index < listView1.Items.Count -1)
+            if (SelectedContactIsNotAtBottom())
             {
                 Swap(1);
             }
@@ -206,20 +240,20 @@ namespace _03DTP_Contacts_List
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            int selectedIndex = listView1.FocusedItem.Index;
             ReadFile();
-
-            allLines.RemoveAt(selectedIndex);
-
-            File.WriteAllLines(filePath, allLines);
+            RemoveSelectedContact();
+            WriteFile();
             LoadContacts();
 
-            if (selectedIndex < listView1.Items.Count)
+            if (SelectedContactIsNotAtBottom())
             {
-                listView1.Items[selectedIndex].Focused = true;
-                listView1.Items[selectedIndex].Selected = true;
+                ReselectContact();
             }
         }
 
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FindSelectedIndex();
+        }
     }
 }
