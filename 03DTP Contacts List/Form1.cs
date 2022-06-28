@@ -73,8 +73,8 @@ namespace _03DTP_Contacts_List
         public void CheckTextBoxValidity()
         {
             validName = Regex.IsMatch(txtName.Text, @"^[a-zA-Z\s]+$");
-            validAge = Regex.IsMatch(txtAge.Text, @"^\d+$");
-            validPhone = Regex.IsMatch(txtPhone.Text, @"^\d+$");
+            validAge = Regex.IsMatch(txtAge.Text, @"^[\d\s]+$");
+            validPhone = Regex.IsMatch(txtPhone.Text, @"^[\d\s\-]+$");
         }
         public void ResetTextBoxColors()
         {
@@ -202,10 +202,23 @@ namespace _03DTP_Contacts_List
             }
             else
             {
-                //These three lines set the error message based on which textboxes are invalid
-                if (!validName) { error = error +"The name must only contain letters\n"; txtName.BackColor = Color.Pink; }
-                if (!validAge) { error = error + "The age must only contain numbers\n"; txtAge.BackColor = Color.Pink; }
-                if (!validPhone) { error = error + "The Phone No. must only contain numbers\n"; txtPhone.BackColor = Color.Pink; }
+                //These three if statements set the error message based on which textboxes are invalid
+                //If a textbox is empty, there will not be an error message for it, but it will still turn red.
+                if (!validName)
+                { 
+                    if (!String.IsNullOrWhiteSpace(txtName.Text)) error = error +"The name must only contain letters\n"; 
+                    txtName.BackColor = Color.Pink; 
+                }
+                if (!validAge)
+                {
+                    if (!String.IsNullOrWhiteSpace(txtAge.Text)) error = error + "The age must only contain numbers\n";
+                    txtAge.BackColor = Color.Pink;
+                }
+                if (!validPhone)
+                {
+                    if (!String.IsNullOrWhiteSpace(txtPhone.Text)) error = error + "The Phone No. must only contain numbers\n";
+                    txtPhone.BackColor = Color.Pink;
+                }
             }
             ShowErrorThenClearVariable();
 
