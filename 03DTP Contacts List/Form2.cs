@@ -26,7 +26,7 @@ namespace _03DTP_Contacts_List
         
         
         //
-        //methods
+        //Small Methods
         //
 
 
@@ -36,7 +36,7 @@ namespace _03DTP_Contacts_List
             validAge = Regex.IsMatch(txtAge.Text, @"^\d+$");
             validPhone = Regex.IsMatch(txtPhone.Text, @"^\d+$");
         }
-        public void SetDefaultColors()
+        public void ResetTextBoxColors()
         {
             txtName.BackColor = SystemColors.Window;
             txtAge.BackColor = SystemColors.Window;
@@ -61,7 +61,7 @@ namespace _03DTP_Contacts_List
         }
 
         //
-        //events
+        //Events
         //
 
 
@@ -80,7 +80,7 @@ namespace _03DTP_Contacts_List
         private void btnConfirm_Click(object sender, EventArgs e)
         {
                 CheckTextBoxValidity();
-                SetDefaultColors();
+                ResetTextBoxColors();
 
                 if (AllTextBoxesAreValid())
                 {

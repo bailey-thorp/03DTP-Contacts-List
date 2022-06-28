@@ -39,6 +39,7 @@ namespace _03DTP_Contacts_List
         //Small Methods
         //
 
+
         public void CreateFileIfNeccecary()
         {
             if (!File.Exists(filePath)) { using (File.Create("Contacts-storage.txt")) { } }
@@ -54,18 +55,6 @@ namespace _03DTP_Contacts_List
             File.WriteAllLines(filePath, allLines);
         }
 
-        public void ConvertFromFileToListView()
-        {
-            foreach (string line in allLines)
-            {
-                string[] sections = line.Split(',');
-
-                ListViewItem lvi = new ListViewItem(sections[0]);
-                lvi.SubItems.Add(sections[1]);
-                lvi.SubItems.Add(sections[2]);
-                listView1.Items.Add(lvi);
-            }
-        }
         public void FindSelectedIndex()
         {
             selectedIndex = listView1.FocusedItem.Index;
@@ -87,7 +76,7 @@ namespace _03DTP_Contacts_List
             validAge = Regex.IsMatch(txtAge.Text, @"^\d+$");
             validPhone = Regex.IsMatch(txtPhone.Text, @"^\d+$");
         }
-        public void SetDefaultColors()
+        public void ResetTextBoxColors()
         {
             txtName.BackColor = SystemColors.Window;
             txtAge.BackColor = SystemColors.Window;
@@ -141,13 +130,6 @@ namespace _03DTP_Contacts_List
         {
             allLines.RemoveAt(selectedIndex);
         }
-
-
-        //
-        //Methods
-        //
-
-
         public void ClearTextBoxes()
         {
             txtName.Text = "";
@@ -155,11 +137,30 @@ namespace _03DTP_Contacts_List
             txtPhone.Text = "";
         }
 
+
+        //
+        //Methods
+        //
+
+
         public void LoadContacts()
         {   
             listView1.Items.Clear();
             ReadFile();
             ConvertFromFileToListView();
+        }
+
+        public void ConvertFromFileToListView()
+        {
+            foreach (string line in allLines)
+            {
+                string[] sections = line.Split(',');
+
+                ListViewItem lvi = new ListViewItem(sections[0]);
+                lvi.SubItems.Add(sections[1]);
+                lvi.SubItems.Add(sections[2]);
+                listView1.Items.Add(lvi);
+            }
         }
 
         public void Swap(int a)
@@ -178,6 +179,10 @@ namespace _03DTP_Contacts_List
         //Events
         //
 
+        //Here, almost every line of code is replaced by a small method
+        //Each method is self-explanatory as to what the method does.
+        //This is an alternative to putting comments throughout the code
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -187,7 +192,7 @@ namespace _03DTP_Contacts_List
         private void btnAdd_Click(object sender, EventArgs e)
         {
             CheckTextBoxValidity();
-            SetDefaultColors();
+            ResetTextBoxColors();
 
             if (AllTextBoxesAreValid())
             {
@@ -197,7 +202,7 @@ namespace _03DTP_Contacts_List
             }
             else
             {
-                //set error message based on which textboxes are invalid
+                //These three lines set the error message based on which textboxes are invalid
                 if (!validName) { error = error +"The name must only contain letters\n"; txtName.BackColor = Color.Pink; }
                 if (!validAge) { error = error + "The age must only contain numbers\n"; txtAge.BackColor = Color.Pink; }
                 if (!validPhone) { error = error + "The Phone No. must only contain numbers\n"; txtPhone.BackColor = Color.Pink; }
@@ -226,6 +231,8 @@ namespace _03DTP_Contacts_List
         {
             if (SelectedContactIsNotAtTop())
             {
+                //Swaps the selected contact with the one above or below it, repsectively
+                //This method also contains other methods
                 Swap(-1);
             }
         }
@@ -234,6 +241,7 @@ namespace _03DTP_Contacts_List
         {
             if (SelectedContactIsNotAtBottom())
             {
+                //Same as above
                 Swap(1);
             }
         }
