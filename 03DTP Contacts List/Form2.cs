@@ -34,7 +34,7 @@ namespace _03DTP_Contacts_List
         {
             validName = Regex.IsMatch(txtName.Text, @"^[a-zA-Z\s]+$");
             validAge = Regex.IsMatch(txtAge.Text, @"^\d+$");
-            validPhone = Regex.IsMatch(txtPhone.Text, @"^\d+$");
+            validPhone = Regex.IsMatch(txtPhone.Text, @"^[\d\s\-]+$");
         }
         public void ResetTextBoxColors()
         {

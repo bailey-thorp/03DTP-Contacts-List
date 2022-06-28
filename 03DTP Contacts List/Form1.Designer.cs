@@ -212,7 +212,7 @@ namespace _03DTP_Contacts_List
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.listView1);
             this.Name = "frm1";
-            this.Text = "Form1";
+            this.Text = "Contacts List";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
